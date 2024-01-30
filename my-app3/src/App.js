@@ -1,8 +1,8 @@
 import './App.css';
 import {
-    BrowserRouter as Router,
+    HashRouter as Router,
     Routes,
-    Route
+    Route, Link
 } from "react-router-dom";
 
 function Home() {
@@ -43,23 +43,23 @@ function NotFoundPage() {
 
 function App() {
     return (
-        <div className="App">
-            <h1>Hello React Router DOM</h1>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/topics">Topics</a></li>
-                <li><a href="/contact">Contact</a></li>
-                <li><a href="/*">NotFoundPage</a></li>
-            </ul>
-            <Router>
+        <Router>
+            <div className="App">
+                <h1>Hello React Router DOM</h1>
+                <ul>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/topics">Topics</Link></li>
+                    <li><Link to="/contact">Contact</Link></li>
+                    <li><Link to="/*">NotFoundPage</Link></li>
+                </ul>
                 <Routes> {/* react-router-dom 버전 6 이상 부터는 Routes로 감싸줘야 함*/}
                     <Route path="/" element={<Home/>}/>
                     <Route path="/topics" element={<Topics/>}/>
                     <Route path="/contact" element={<Contact/>}/>
-                    <Route path="/*" element={ <NotFoundPage /> } />
+                    <Route path="/*" element={<NotFoundPage/>}/>
                 </Routes>
-            </Router>
-        </div>
+            </div>
+        </Router>
     );
 }
 
