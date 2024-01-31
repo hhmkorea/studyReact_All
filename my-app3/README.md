@@ -15,8 +15,8 @@
 ### 3. Link 사용방식 바뀜.
 ##
 ### *** 컴포넌트 정리 ***
-+ BrowserRouter : 
-+ HashRouter : 
++ BrowserRouter : History 객체를 생성하고, 초기 위치를 상태로 만들고, URL을 참조한다.
++ HashRouter : URL에 #이 붙는다.
 + Link : 페이지가 리로드 되지 않게 자동으로 구현하는 컴포넌트
 + NavLink : 네비게이션에 사용자가 위치한 곳을 표시해주는 class="active" 속성이 추가됨.
 # 

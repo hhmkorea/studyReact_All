@@ -3,7 +3,7 @@ import {
     BrowserRouter as Router,
     Routes,
     Route,
-    NavLink as Link,
+    NavLink as Link, useParams,
 } from "react-router-dom";
 
 function Home() {
@@ -24,21 +24,15 @@ function Contact() {
     )
 }
 
-function NotFoundPage() {
-    return (
-        <div>
-            <h2>NotFoundPage</h2>
-            Not Found
-        </div>
-    )
-}
-
 let contents = [
     {id:1, title:'HTML', description:'HTML is ...'},
     {id:2, title:'JS', description:'JS is ...'},
     {id:3, title:'React', description:'React is ...'},
 ];
 function Topic() {
+    let params = useParams();
+    console.log(params);
+
     return (
         <div>
             <h2>Topic</h2>
@@ -64,7 +58,8 @@ function Topics() {
                 {list}
             </ul>
             <Routes>
-                <Route path="/topics/:topic_id" element={<Topic/>}/>
+                <Route path="/topics" element={<Topics/>}/>
+                    <Route path=":topic_id" element={<Topic/>}/>
             </Routes>
         </div>
     )
