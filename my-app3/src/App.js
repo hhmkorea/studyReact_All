@@ -44,6 +44,9 @@ function NotFoundPage() {
 function App() {
     return (
         <Router>
+            {/*  HashRouter 실습 중 확인된 내용 -----------
+                <a href=""></a>로 하면 구현이 안되고
+                <Link to=""></Link>로 구현해야함. */}
             <div className="App">
                 <h1>Hello React Router DOM</h1>
                 <ul>
