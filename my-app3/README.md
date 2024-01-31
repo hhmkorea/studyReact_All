@@ -1,7 +1,6 @@
 # React Router DOM -----
 + react-router-dom 버전 6이상 사용중, 버전 5와 문법차이 있음 
-
-
+###
 ### 1. exact 사용 안함, 대신 아래와 같이 사용.
 > < Route path="test" > 에서 element를 넣지 않고, test로 시작되는 모든 라우팅을 매칭 시킨다.
 
@@ -9,17 +8,19 @@
 > < Router > 
 < Routes >
 < Route path="" element="" / >
+... 생략 ...
 < /Routes >
 < /Router >
 
 ### 3. Link 사용방식 바뀜.
-
-
-
-
-
-
-### 기타 참고 사항 ------
+##
+### *** 컴포넌트 정리 ***
++ BrowserRouter : 
++ HashRouter : 
++ Link : 페이지가 리로드 되지 않게 자동으로 구현하는 컴포넌트
++ NavLink : 네비게이션에 사용자가 위치한 곳을 표시해주는 class="active" 속성이 추가됨.
+# 
+### *** 기타 참고 사항 ***
 #### 1. HashRouter 구현 시 Link 로...
 > < a href="" >< /a >로 하면 구현이 안되고 < Link to="" >< /Link >로 구현해야함.
 #### 2. import 할때 별칭 사용 가능.
@@ -29,4 +30,16 @@ Routes,
 Route,
 NavLink as Link,
 } from "react-router-dom";
+#### 3. < Router > < /Router > 는 한 번만 사용 가능.
+
+> function App() {
+return (
+< Router >
+< div className="App" >
+ ... 생략 ... 
+< /div >
+< /Router >
+);
+}
+
 
