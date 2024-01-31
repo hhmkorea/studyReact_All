@@ -33,47 +33,38 @@ function NotFoundPage() {
     )
 }
 
-function HTML() {
+let contents = [
+    {id:1, title:'HTML', description:'HTML is ...'},
+    {id:2, title:'JS', description:'JS is ...'},
+    {id:3, title:'React', description:'React is ...'},
+];
+function Topic() {
     return (
         <div>
-            <h2>HTML</h2>
-            HTML is ...
+            <h2>Topic</h2>
+            Topic ...
         </div>
     )
 }
-
-function JS() {
-    return (
-        <div>
-            <h2>JS</h2>
-            JS is ...
-        </div>
-    )
-}
-
-function React() {
-    return (
-        <div>
-            <h2>React</h2>
-            React is ...
-        </div>
-    )
-}
-
-
 function Topics() {
+    let list = [];
+    for (let i=0; i<contents.length; i++) {
+        list.push(
+            <li key={contents[i].id}>
+                <Link to={"/topics/" + contents[i].id}>
+                    {contents[i].title}
+                </Link>
+            </li>
+        );
+    }
     return (
         <div>
             <h2>Topics</h2>
             <ul>
-                <li><Link to="/topics/1">HTML</Link></li>
-                <li><Link to="/topics/2">JS</Link></li>
-                <li><Link to="/topics/3">React</Link></li>
+                {list}
             </ul>
             <Routes>
-                <Route path="/topics/1" element={<HTML/>}/>
-                <Route path="/topics/2" element={<JS/>}/>
-                <Route path="/topics/3" element={<React/>}/>
+                <Route path="/topics/:topic_id" element={<Topic/>}/>
             </Routes>
         </div>
     )
