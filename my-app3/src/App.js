@@ -3,7 +3,7 @@ import {
     HashRouter as Router,
     Routes,
     Route,
-    NavLink as Link
+    NavLink as Link,
 } from "react-router-dom";
 
 function Home() {
@@ -15,13 +15,13 @@ function Home() {
     )
 }
 
-function Topics() {
+function Topic() {
     return (
         <div>
-            <h2>Topics</h2>
-            Topics...
+            <h3>Topic</h3>
+            Topic...
         </div>
-    )
+    );
 }
 
 function Contact() {
@@ -39,6 +39,42 @@ function NotFoundPage() {
             <h2>NotFoundPage</h2>
             Not Found
         </div>
+    )
+}
+
+let contents = [
+    {id: 1, title: 'HTML', description: 'HTML is ...'},
+    {id: 2, title: 'JS', description: 'JS is ...'},
+    {id: 3, title: 'React', description: 'React is ...'},
+];
+
+function Topics() {
+    /*let lis = [];
+    for (let i = 0; i < contents.length; i++) {
+        lis.push(
+            <li key={contents[i].id}>
+                <Link to={"/topics" + contents[i].id}>
+                    {contents[i].title}
+                </Link>
+            </li>
+        );
+    }*/
+    return (
+            <div>
+                <h2>Topics</h2>
+                <ul>
+                    <li><Link to="/Topics/1">HTML</Link></li>
+                    <li><Link to="/Topics/2">JS</Link></li>
+                    <li><Link to="/Topics/3">React</Link></li>
+                    {/*{lis}*/}
+                </ul>
+                <Routes> {/* react-router-dom 버전 6 이상 부터는 Routes로 감싸줘야 함*/}
+                    <Route path="/Topics/1" element="HTML is ..."/>
+                    <Route path="/Topics/2" element="JS is ..."/>
+                    <Route path="/Topics/3" element="React is ..."/>
+                </Routes>
+                {/*<Route path="/topics/:topic_id" element={<Topic />}/>*/}
+            </div>
     )
 }
 
