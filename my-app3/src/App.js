@@ -32,12 +32,12 @@ let contents = [
 function Topic() {
     let params = useParams();
     let topic_id = params.topic_id;
-    let seleted_topic = {
+    let seleted_topic = { // 초기값 
         title: 'Sorry',
         description: 'Not Found'
     };
     for(let i=0; i<contents.length; i++) {
-        if(contents[i].id === Number(topic_id)) {
+        if(contents[i].id === Number(topic_id)) { // contents 배열의 id와 클릭한 id 값이 동일하면
             seleted_topic= contents[i];
             break;
         }
