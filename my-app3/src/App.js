@@ -31,14 +31,25 @@ let contents = [
 ];
 function Topic() {
     let params = useParams();
+    let topic_id = params.topic_id;
+    let seleted_topic = {
+        title: 'Sorry',
+        description: 'Not Found'
+    };
+    for(let i=0; i<contents.length; i++) {
+        if(contents[i].id === Number(topic_id)) {
+            seleted_topic= contents[i];
+            break;
+        }
+    }
     console.log(params);
 
     return (
         <div>
-            <h2>Topic</h2>
-            Topic ...
+            <h3>{seleted_topic.title}</h3>
+            {seleted_topic.description}
         </div>
-    )
+    );
 }
 function Topics() {
     let list = [];
@@ -59,7 +70,7 @@ function Topics() {
             </ul>
             <Routes>
                 <Route path="/topics" element={<Topics/>}/>
-                    <Route path=":topic_id" element={<Topic/>}/>
+                    <Route path=":topic_id" element={<Topic/>}/> {/* topics 하위 아이템 출력방식 */}
             </Routes>
         </div>
     )
