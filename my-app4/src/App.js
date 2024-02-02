@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 class Nav extends Component {
     state = {
-        list:[]
+        list: []
     }
 
     componentDidMount() {
@@ -12,7 +12,7 @@ class Nav extends Component {
             })
             .then(function (json) {
                 console.log(json);
-                this.setState({list:json});
+                this.setState({list: json});
             }.bind(this));
     }
 
@@ -22,7 +22,12 @@ class Nav extends Component {
             let li = this.state.list[i];
             listTag.push(
                 <li key={li.id}>
-                    <a href={li.id}>{li.title}</a>
+                    <a href={li.id} data-id={li.id} onClick={function (e) {
+                        e.preventDefault();
+                        console.log('trigger');
+                        this.props.onClick(e.target.dataset.id);
+                    }.bind(this)}>
+                        {li.title}</a>
                 </li>
             );
         }
@@ -36,17 +41,47 @@ class Nav extends Component {
     }
 }
 
-function App() {
-    return (
-        <div className="App">
-            <h1>WEB</h1>
-            <Nav></Nav>
+class Article extends Component {
+    render() {
+        return (
             <article>
-                <h2>Welcome</h2>
-                Hello, React &amp; Ajax
+                <h2>{this.props.title}</h2>
+                {this.props.desc}
             </article>
-        </div>
-    );
+        )
+    }
+}
+
+class App extends Component {
+    state = {
+        article: {
+            title: 'Welcome',
+            desc: 'Hello, React & Ajax'
+        }
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <h1>WEB</h1>
+                <Nav onClick={function (id) {
+                    fetch(id + '.json')
+                        .then(function (result) {
+                            return result.json();
+                        })
+                        .then(function (json) {
+                            this.setState({
+                                article: {
+                                    title: json.title,
+                                    desc: json.desc
+                                }
+                            });
+                        }.bind(this));
+                }.bind(this)}></Nav>
+                <Article title={this.state.article.title} desc={this.state.article.desc}></Article>
+            </div>
+        );
+    }
 }
 
 export default App;
