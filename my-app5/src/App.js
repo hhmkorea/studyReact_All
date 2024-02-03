@@ -1,28 +1,7 @@
 import React, {Component} from "react";
 import './App.css';
-
-class AddNumber extends Component {
-    render() {
-        return (
-            <div>
-                <h1>Add Number</h1>
-                <input type="button" value="+"></input>
-                <input type="text" value="0"></input>
-            </div>
-        );
-    }
-}
-
-class AddNumberRoot extends Component {
-    render() {
-        return (
-            <div>
-                <h1>Add Number Root</h1>
-                <AddNumber></AddNumber>
-            </div>
-        );
-    }
-}
+import AddNumberRoot from "./components/AddNumberRoot";
+import DisplayNumberRoot from "./components/DisplayNumberRoot";
 
 function App() {
   return (
@@ -32,28 +11,6 @@ function App() {
         <DisplayNumberRoot></DisplayNumberRoot>
     </div>
   );
-}
-
-class DisplayNumber extends Component {
-    render() {
-        return (
-            <div>
-                <h1>DisplayNumber</h1>
-                <input type="text" value="0" readOnly></input>
-            </div>
-        );
-    }
-}
-
-class DisplayNumberRoot extends Component {
-    render() {
-        return (
-            <div>
-                <h1>Display Number Root</h1>
-                <DisplayNumber></DisplayNumber>
-            </div>
-        );
-    }
 }
 
 export default App;
