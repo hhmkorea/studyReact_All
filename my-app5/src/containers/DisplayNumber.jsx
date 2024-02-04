@@ -1,17 +1,17 @@
 import DisplayNumber from "../components/DisplayNumber";
 import {connect} from "react-redux";
 
-function mapReduxStateToReactProps(state) {
+function mapStateToProps(state) {
     return {
         number:state.number
     }
 }
 
-function mapReduxDispatchToReactProps() {
+function mapDispatchToProps() {
     return {};
 }
 
-export default connect(mapReduxStateToReactProps, mapReduxDispatchToReactProps)(DisplayNumber);
+export default connect(mapStateToProps, mapDispatchToProps)(DisplayNumber);
 // mapStateToProps : 첫번째 인자, store 변경사항 통보받아 컴포넌트의 props로 전달하는 역할.
 // mapDispatchToProps : 두번째 인자, dispatch를 리엑트 컴포넌트의 props로 연결하는 역할.
 
