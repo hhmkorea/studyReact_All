@@ -14,3 +14,4 @@
 + my-app3 : React Router DOM    
 + my-app4 : React & Ajax    
 + my-app5 : React Redux 
++ ref_doc : 참고용 문서, connect.js 설명 
