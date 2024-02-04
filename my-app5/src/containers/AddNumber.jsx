@@ -11,12 +11,3 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(null, mapDispatchToProps)(AddNumber);
 // 추가만 하는 컴포넌트로, 상태를 전달하는 props가 없어서 첫번째 인자는 null
-
-/*
-export default class extends Component {
-    render() {
-        return <AddNumber onClick={function (size) {
-            store.dispatch({type:'INCREMENT', size:size});
-        }.bind(this)}></AddNumber>
-    }
-}*/
