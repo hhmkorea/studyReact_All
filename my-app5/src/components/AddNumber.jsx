@@ -1,9 +1,5 @@
 import React, {Component} from "react";
-import {connect} from "react-redux";
-import AddNumber from "../containers/AddNumber";
 
-export default connect()(AddNumber);
-/*
 export default class AddNumber extends Component {
     state = { size:1 }
 
@@ -25,4 +21,4 @@ export default class AddNumber extends Component {
             </div>
         );
     }
-}*/
+}
