@@ -1,4 +1,4 @@
-# React Router DOM -----
+# React Router DOM
 + react-router-dom 버전 6이상 사용중, 버전 5와 문법차이 있음 
 ###
 ### 1. exact 사용 안함, 대신 아래와 같이 사용.
