@@ -21,12 +21,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-/.idea/
-/my-app/node_modules/
-/my-app2/node_modules/
-/my-app3/node_modules/
-/my-app3/.idea/
-/my-app2/.idea/
-/my-app/.idea/
-/my-app/build/
-/my-react/my-app/.idea/
