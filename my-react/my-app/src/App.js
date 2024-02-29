@@ -1,41 +1,32 @@
+import React, {useEffect, useState} from 'react';
 import './App.css';
-import Wood from "./Wood";
-import {useState} from "react";
-import Sub from "./Sub";
 
 function App() {
 
-    console.log("App 실행됨");
-
-    const [ num, setNum] = useState(5);
-
-    let sample = [ // 초기값 세팅을 제일 위로 해둬야 referece 변경 안됨.
-        {id: 1, name: "홍길동"},
-        {id: 2, name: "임꺽정"},
-        {id: 3, name: "장보고"},
-        {id: 4, name: "김영수"},
-    ];
-
-    // 다운로드 받음
-    const [users, setUsers] = useState(sample); // reference 변경되야 동작!
+    const [data, setData] = useState(0);
 
     const download = () => {
-        //fetch().then().then()
-        // 기존 데이터 세팅
-        setUsers([...sample, {id:num, name: "조자룡"}]);
-        setNum(num + 1);
-    };
+        // 다운로드 받고 (통신)
+        let downloadData = 5; // 5 데이타 받았다고 가정
+        setData(downloadData);
+    }
 
+    // 실행시점 : 
+    // (1) App() 그림이 최초 그려질 때 : App() 함수가 최초 실행될 때 (= 마운트될 때),
+    // (2) 상태 변수가 변경될 때
+    useEffect(() => { // 화살표 함수 사용!!! ()=>{}, function(){}와 동일!!
+        console.log("useEffect 실행됨");
+        download();
+    }, []);
+    
     return (
         <div>
-            <button onClick={download}>다운로드</button>
-            {users.map(u => (
-                <h1>
-                    {u.id}, {u.name}
-                </h1>
-            ))}
+            <h1>데이터 : {data}</h1>
+            <button onClick={()=>{
+                setData(data+1)
+            }}>더하기</button>
         </div>
     );
-}
+};
 
 export default App;

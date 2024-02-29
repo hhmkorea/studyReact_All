@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Sub = () => {
+const Sub = () => { // function Sub와 동일
 
     // 함수 제공!!
 
@@ -11,4 +11,4 @@ const Sub = () => {
     );
 };
 
-export default Sub;
+export default Sub; // 이 함수를 외부에 노출하겠다.
