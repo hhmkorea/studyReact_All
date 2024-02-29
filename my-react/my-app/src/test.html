@@ -48,6 +48,31 @@ const a5 = [1,2,3];
 const b5 = a5.map((n) => n+10);    // const b5 = [...a5]; 와 동일. 각각 가공 가능.
 console.log(b5);                    // 1,2,3
 
+const data = {phone:"2222"};
+const a6 = {id:1, name:"홍길동", phone:"1111", age:17, gender:"남"};
+//const b6 = {...a6, name:"김철수"};     // a6값은 그대로 , b6이름만 덮어서 변경함.
+const b6 = {...a6, ...data};     // a6값은 그대로, b6이름만 변경함.
+console.log(b6);
+
+const users = [
+    {id:1, name:"구태모", phone:"2222"},
+    {id:2, name:"이대엽", phone:"3333"},
+    {id:3, name:"오승훈", phone:"4444"}
+];
+
+const updateUserDto = {
+    id:2, name:"홍길동"
+};
+
+//users[1].name = updateUserDto.name; // 기존데이타 변경됨.
+
+// 2번째 값만 변경
+// const newUsers = users.map((user) = user) // const newUser = {...users}
+const newUsers = users.map( (user) =>
+    user.id === updateUserDto.id ? {...user, ...updateUserDto} : user
+);
+console.log(newUsers);
+
 // *** 정규연산자 : 회전초밥집에서 마지막으로 초밥을 받을 수 있는거.
 // *** map() : 모든 회전초밥에 침 묻힐 수 있는거, 가공가능.
 
