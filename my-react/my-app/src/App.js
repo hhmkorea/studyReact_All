@@ -4,24 +4,44 @@ import {useState} from "react";
 import Sub from "./Sub";
 
 function App() {
-    //let number = 1; // 상태 값
 
-    const [number, setNumber] = useState(2); // 2가 default값
-    // React안에 hooks 라이브러리 상태값이 됨. React 엔진이 상태값 체크!
+    console.log("App 실행됨");
 
-    const add = () => {
-        //number++; // 자기에게 다시 +1넣는것
-        setNumber(number + 1); // React한테 number값 변경할께 라고 요청.
-        console.log("add", number);
-    }
+    let sample = [ // 초기값 세팅을 제일 위로 해둬야 referece 변경 안됨.
+        {id: 1, name: "홍길동"},
+        {id: 2, name: "임꺽정"},
+        {id: 3, name: "장보고"},
+        {id: 4, name: "김영수"},
+    ];
 
-    // 랜더링 시점 = 상태값 변경, setNumber 호출될때, Dom은 신경 안쓰고 상태값만 변경.
+    // 다운로드 받음
+    const [users, setUsers] = useState(sample); // reference 변경되야 동작!
+
+    const download = () => {
+        //fetch().then().then()
+        // 기존 데이터 세팅
+
+        //setUsers(sample);                     // reference 변경 없음.
+        //setUsers([...sample]);                // 깊은 복사로, reference 변경. 강제로 다시 랜더링됨.
+
+        //sample.push({id:5, name: "조자룡"});   // 얇은 복사로, refernce 변경 없이 값만 변경됨. useState() 랜더링 안됨.
+        //console.log(sample);
+        //setUsers(sample);
+
+        const a = sample.concat({id:5, name: "조자룡"}); // 계속 랜더링됨. but 기존 데이타 sample불변, 똑같은 데이터라 한번만 추가됨.
+        console.log(a);
+        setUsers(a);
+
+    };
+
     return (
         <div>
-            <h1>숫자 : {number}</h1>
-            <button onClick={add}>더하기</button>
-            {/* onClick={add()}로 넣으면 바로 실행하는 것 */}
-            <Sub />
+            <button onClick={download}>다운로드</button>
+            {users.map(u => (
+                <h1>
+                    {u.id}, {u.name}
+                </h1>
+            ))}
         </div>
     );
 }
