@@ -1,37 +1,39 @@
-import React, {useEffect, useState} from 'react';
+import React, {useMemo, useState} from 'react';
 import './App.css';
 
-function App() {
+// useMemo => memorization(기억)
+function App(props) {
+    const [list, setList] = useState([1, 2, 3, 4]);
+    const [str, setStr] = useState("합계");
 
-    const [data, setData] = useState(0);
-    const [search, setSearch] = useState(0);
-
-    const download = () => {
-        // 다운로드 받고 (통신)
-        let downloadData = 5; // 5 데이타 받았다고 가정
-        setData(downloadData);
+    const getAddResult = () => {
+        // 1초
+        let sum = 0;
+        list.forEach(i => sum = sum +i);
+        console.log("sum 함수 실행됨. : ", sum);
+        return sum;
     }
+    // interpreter방식으로 한줄씩 내려가며 읽으므로 useMemo는 관리할 함수보다 아래에 있어야 함.
+    const addResult = useMemo(() => getAddResult(), [list]);
 
-    // 실행시점 : 
-    // (1) App() 그림이 최초 그려질 때 : App() 함수가 최초 실행될 때 (= 마운트될 때),
-    // (2) 상태 변수가 변경될 때
-    // (3) 의존리스트로 관리를 할 수 있다.
-    useEffect(() => { // 화살표 함수 사용!!! ()=>{}, function(){}와 동일!!
-        console.log("useEffect 실행됨");
-        download();
-    }, [search]);
-    
     return (
         <div>
             <button onClick={() => {
-                setSearch(2);
-            }}>검색하기</button>
-            <h1>데이터 : {data}</h1>
-            <button onClick={()=>{
-                setData(data+1)
-            }}>더하기</button>
+                setStr("Total");
+            }}>
+                문자 변경
+            </button>
+            <button onClick={() => {
+                setList([...list, 10])
+            }}>리스트값 추가</button>
+            <div>
+                {list.map((i) => (
+                    <h1>{i}</h1>
+                ))}
+            </div>
+            <div>{str} : {addResult}</div>
         </div>
     );
-};
+}
 
 export default App;
