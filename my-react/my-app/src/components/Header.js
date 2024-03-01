@@ -19,7 +19,7 @@ const Header = () => {
                     <Link to="/">홈</Link> {/* a href는 전체 랜더링됨. Link to를 사용해서 객체만 변경함 */}
                 </li>
                 <li>
-                    <Link to="/login">로그인</Link>
+                    <Link to="//10">로그인</Link>
                 </li>
             </ul>
         </StyledHeaderBtnDiv>
