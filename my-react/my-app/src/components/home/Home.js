@@ -1,20 +1,19 @@
 import React from 'react';
+import styled from "styled-components";
 
-// Function 방식 : class 방식으로 하면 번거로움.
+// props를 부모로 부터 받으니 밖에 스타일 조건을 넣음.
+let StyledDeleteButton = styled.button`
+    color: ${(props) => (props.username === 'ssar'?'blue':'red')};
+`;
+
 const Home = (props) => {
-
     // 구조분할 할당
-    const { boards, setBoards, number, setNumber } = props;
+    const { boards, setBoards, user } = props;
 
     return (
         <div>
-            <h1>홈 : {number}</h1>
-            <button onClick={() =>
-                setNumber(number+1)
-            }>번호증가</button>
-            <button onClick={() =>
-                setBoards([]) // 빈 배열로 셋팅.
-            }>전체삭제</button>
+            <StyledDeleteButton user={user} onClick={() => setBoards([])
+            }>전체삭제</StyledDeleteButton>
             {boards.map((board) => (
                 <h3> 제목 : {board.title} 내용 : {board.content} </h3>
             ))}
