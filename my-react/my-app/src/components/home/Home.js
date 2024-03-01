@@ -7,6 +7,7 @@ let StyledDeleteButton = styled.button`
 
 // 스타일 확장
 let StyledAddButton = styled(StyledDeleteButton)`
+    color: ${(props) => (props.username === 'ssar'?'blue':'red')};
     background-color: green;
 `;
 
@@ -20,7 +21,9 @@ const Home = (props) => {
             <StyledDeleteButton user={user} onClick={() => setBoards([])
             }>전체삭제</StyledDeleteButton>
             {boards.map((board) => (
-                <h3> 제목 : {board.title} 내용 : {board.content} </h3>
+                <div key={board.id}> {/* 고유의 key 값을 넣어줘야 함. */}
+                    <h3> 제목 : {board.title} 내용 : {board.content} </h3>
+                </div>
             ))}
         </div>
     );
