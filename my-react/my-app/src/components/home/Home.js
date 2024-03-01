@@ -1,9 +1,13 @@
 import React from 'react';
 import styled from "styled-components";
 
-// props를 부모로 부터 받으니 밖에 스타일 조건을 넣음.
 let StyledDeleteButton = styled.button`
     color: ${(props) => (props.username === 'ssar'?'blue':'red')};
+`;
+
+// 스타일 확장
+let StyledAddButton = styled(StyledDeleteButton)`
+    background-color: green;
 `;
 
 const Home = (props) => {
@@ -12,6 +16,7 @@ const Home = (props) => {
 
     return (
         <div>
+            <StyledAddButton user={user}>더하기</StyledAddButton>
             <StyledDeleteButton user={user} onClick={() => setBoards([])
             }>전체삭제</StyledDeleteButton>
             {boards.map((board) => (
