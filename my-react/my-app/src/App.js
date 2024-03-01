@@ -1,37 +1,30 @@
-import React, {useMemo, useState} from 'react';
-import './App.css';
+import React, {createRef, useRef, useState} from 'react';
 
-// useMemo => memorization(기억)
+// useRef (디자인)
+// dom을 변경할 때 사용
+
 function App(props) {
-    const [list, setList] = useState([1, 2, 3, 4]);
-    const [str, setStr] = useState("합계");
 
-    const getAddResult = () => {
-        // 1초
-        let sum = 0;
-        list.forEach(i => sum = sum +i);
-        console.log("sum 함수 실행됨. : ", sum);
-        return sum;
-    }
-    // interpreter방식으로 한줄씩 내려가며 읽으므로 useMemo는 관리할 함수보다 아래에 있어야 함.
-    const addResult = useMemo(() => getAddResult(), [list]);
+    const myRef = useRef(null);
+    const [list, setList] = useState([
+        {id:1, name:"길동"},
+        {id:2, name:"꺽정"},
+    ]);
+
+    const myRefs = Array.from({length:list.length}).map(() => createRef());
 
     return (
         <div>
             <button onClick={() => {
-                setStr("Total");
-            }}>
-                문자 변경
+                console.log(myRef.current);
+                //myRef.current.style.backgroundColor = 'red';
+                myRefs[1].current.style.backgroundColor = 'red';
+            }}>색 변경
             </button>
-            <button onClick={() => {
-                setList([...list, 10])
-            }}>리스트값 추가</button>
-            <div>
-                {list.map((i) => (
-                    <h1>{i}</h1>
-                ))}
-            </div>
-            <div>{str} : {addResult}</div>
+            <div ref={myRef}>박스</div>
+            {list.map((user, index) => (
+                <h1 ref={myRefs[index]}>{user.name}</h1>
+            ))}
         </div>
     );
 }
