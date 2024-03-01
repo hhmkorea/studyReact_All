@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 
 // 하나의 컴포넌트를 생성(재사용)
 
@@ -12,10 +13,14 @@ const StyledHeaderBtnDiv = styled.div`
 
 const Header = () => {
     return (
-        <StyledHeaderBtnDiv backgroundcolor="blue">
+        <StyledHeaderBtnDiv backgroundcolor="yellow">
             <ul>
-                <li>메뉴1</li>
-                <li>메뉴2</li>
+                <li>
+                    <Link to="/">홈</Link> {/* a href는 전체 랜더링됨. Link to를 사용해서 객체만 변경함 */}
+                </li>
+                <li>
+                    <Link to="/login">로그인</Link>
+                </li>
             </ul>
         </StyledHeaderBtnDiv>
     );
