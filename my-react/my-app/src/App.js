@@ -6,8 +6,7 @@ function App() {
 
     return (
         <div>
-            <ListPage />
-
+            <ListPage /> {/* 상태값을 들고 있음, 글쓰기 기능도 넣음 */}
         </div>
     );
 }
