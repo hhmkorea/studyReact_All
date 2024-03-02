@@ -27,7 +27,8 @@ const ListPage = () => {
         {id: 5, title: "제목5", content: "내용5"},
     ]);
 
-    const handleWrite = () => {
+    const handleWrite = (e) => {
+        e.preventDefault();         // form 태그가 하려는 action을 중지시켜야 함.
         console.log(1, post.title);
         console.log(2, post.content);
         setPosts([...posts, post]); // posts에 신규 글쓰기한 post 더하기
@@ -43,7 +44,7 @@ const ListPage = () => {
     return (
         <div>
             <h1>리스트 페이지</h1>
-            <form>
+            <form onSubmit={handleWrite}>
                 <input type="text"
                        placeholder="제목을 입력하세요..."
                        value={post.title}
@@ -56,7 +57,7 @@ const ListPage = () => {
                        onChange={handleForm}
                        name="content"
                 />
-                <button type="button" onClick={handleWrite}>글쓰기</button>
+                <button type="submit" >글쓰기</button>
                 {/* type="button"은 submit이 안됨.*/}
             </form>
             <hr/>
