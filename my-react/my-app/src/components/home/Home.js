@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
+import {Button} from "react-bootstrap";
 
 let StyledDeleteButton = styled.button`
     color: ${(props) => (props.username === 'ssar'?'blue':'red')};
@@ -17,6 +18,7 @@ const Home = (props) => {
 
     return (
         <div>
+            <Button variant="primary">Primary</Button>{' '}
             <StyledAddButton user={user}>더하기</StyledAddButton>
             <StyledDeleteButton user={user} onClick={() => setBoards([])
             }>전체삭제</StyledDeleteButton>
