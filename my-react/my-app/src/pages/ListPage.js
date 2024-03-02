@@ -12,13 +12,6 @@ const StyledItemBoxDiv = styled.div`
 `;
 
 const ListPage = () => {
-
-    const [post, setPost] = useState({
-        id: '',
-        title: '',
-        content: '',
-    });
-
     const [posts, setPosts] = useState([
         {id: 1, title: "제목1", content: "내용1"},
         {id: 2, title: "제목2", content: "내용2"},
@@ -27,24 +20,37 @@ const ListPage = () => {
         {id: 5, title: "제목5", content: "내용5"},
     ]);
 
+    const [no, setNo] = useState(posts.length + 1);
+
+    const [post, setPost] = useState({
+        id: no,
+        title: '',
+        content: '',
+    });
+
     const handleWrite = (e) => {
         e.preventDefault();         // form 태그가 하려는 action을 중지시켜야 함.
-        console.log(1, post.title);
-        console.log(2, post.content);
-        setPosts([...posts, post]); // posts에 신규 글쓰기한 post 더하기
+        console.log("no: ", no);
+        console.log("id: ", post.id);
+        // console.log("title: ", post.title);
+        // console.log("content: ", post.content);
+        setNo(no+1);
+        setPosts([...posts, {id:no, title: post.title, content: post.content}]); // posts에 신규 글쓰기한 post 더하기
     }
 
     const handleForm = (e) => {
         // compute property names, JS6 문법, 변수 키값을 동적으로 할당.
         setPost({
             ...post, // 기존값 유지하면서 덮어쓰기!! 안하면 기존값 없어져서 에러남.
-            [e.target.name]: e.target.value
+            [e.target.name]: (e.target.name == 'id'? no : e.target.value)
         });
     }
+
     return (
         <div>
             <h1>리스트 페이지</h1>
             <form onSubmit={handleWrite}>
+                <input type="hidden" value={no} onChange={handleForm} name="id"/>
                 <input type="text"
                        placeholder="제목을 입력하세요..."
                        value={post.title}
