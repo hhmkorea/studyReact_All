@@ -1,19 +1,18 @@
 import React from 'react';
-import Header from "./components/Header";
-import Footer from "./components/Footer";
 import {Route, Routes} from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import LoginPage from "./pages/LoginPage";
+import ListPage from "./pages/ListPage";
+import WritePage from "./pages/WritePage";
+import Navigation from "./components/Navigation";
 
-function App() {
+// 글쓰기, 글삭제, 글목록보기
+function App(props) {
     return (
         <div>
-            <Header/>
-            <Routes> {/* Roustes를 넣어야함!! Route로 화면에서 객체 바꿔치기 */}
-                <Route path="/" exact={true} element={<HomePage/>}/>
-                <Route path="/login/:id" exact={true} element={<LoginPage/>}/>
+            <Navigation />
+            <Routes>
+                <Route path="/" exact={true} element={<ListPage />} />
+                <Route path="/write" exact={true} element={<WritePage />} />
             </Routes>
-            <Footer/>
         </div>
     );
 }
