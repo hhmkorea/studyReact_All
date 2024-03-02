@@ -30,8 +30,8 @@ const ListPage = () => {
 
     const handleWrite = (e) => {
         e.preventDefault();         // form 태그가 하려는 action을 중지시켜야 함.
-        console.log("no: ", no);
-        console.log("id: ", post.id);
+        // console.log("no: ", no);
+        // console.log("id: ", post.id);
         // console.log("title: ", post.title);
         // console.log("content: ", post.content);
         setNo(no+1);
@@ -50,7 +50,6 @@ const ListPage = () => {
         <div>
             <h1>리스트 페이지</h1>
             <form onSubmit={handleWrite}>
-                <input type="hidden" value={no} onChange={handleForm} name="id"/>
                 <input type="text"
                        placeholder="제목을 입력하세요..."
                        value={post.title}
