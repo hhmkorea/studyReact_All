@@ -46,12 +46,10 @@ const ListPage = () => {
         });
     }
 
-    const handleDelete = (id) => {
-        const afterDelItemList = posts.filter((post) => {
-            return post.id != id;
-        });
-        console.log(afterDelItemList);
-        //setPosts( [ ...posts, afterDelItemList ]);
+    const handleDelete = (targetId) => {
+        const newList = posts.filter((post) => post.id !== targetId);
+        //console.log(newList);
+        setPosts(newList); // 그냥 새로운 데이타 덮어씀.
     }
 
     return (
@@ -81,7 +79,7 @@ const ListPage = () => {
                     </div>
                     <div>
                         <button onClick={() => {
-                            console.log(post.id);
+                            //console.log(post.id);
                             handleDelete(post.id);
                         }}>삭제</button>
                     </div>
