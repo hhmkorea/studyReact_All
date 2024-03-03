@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<script>
+// concat, fileter, map, slice, concat, spread(흩뿌리다, 전개) 연산자
+
+console.log("1.================= spread 연산자");
+const a = [1,2,3];
+const b = [...a];               // a값을 뿌려줌, 1,2,3 들어감.
+b.push(4);                      // 기존 배열의 값을 수정, b의 데이터 변경
+console.log(`a의 값은 : ${a}`);  // 1,2,3
+console.log(`b의 값은 : ${b}`);  // 1,2,3,4
+
+console.log("2.================= 추가하기");
+const a2 = [1,2,3];
+const b2 = a2.concat(4);         // concat() : 불변함수, a2에 추가된 값이 b2에 들어감. a2는 그대로. push()를 하면 a값이 변함.
+console.log(`a2의 값은 : ${a2}`);
+console.log(`b2의 값은 : ${b2}`);
+const c2 = [0, ...a2, 4];        // concat과 같은 효과
+console.log(`c2의 값은 : ${c2}`); // 1,2,3,4
+
+console.log("3.================= 걸러내기"); // 삭제하기
+const a3 = [1,2,3];
+const b3 = a3.filter((n) => { return n !=1; }); // boolean을 return 받는다. -> true만 걸러낸다.
+console.log(`b3의 값은 : ${b3}`); // 2,3
+
+console.log("4.================= 잘라내기");
+const a4 = [1,2,3];             // slice() : 배열 중간에 값을 넣을때
+const b4 = a4.slice(0,2);
+console.log(b4);                // [1,2]
+const c4 = [...a4.slice(0,2),4,...a4.slice(2,3)];
+console.log(c4);                // 1,2,4,3
+
+console.log("4.================= 반복하기");
+const a5 = [1,2,3];
+// for(let i=0; i<a5.length; i++) { // ---> JPX 문법에서는 for문 안 씀!
+//     console.log(a5[i]);
+// }
+//a5.forEach((n)=> { console.log(n); } );
+// int n같은 타입 js는 안적어도 됨. 그냥 n.
+// {} 지우면 자동으로 return문으로 변함. // ---> 리턴을 못함!!! void.
+
+const b5 = a5.map((n) => n+10);    // const b5 = [...a5]; 와 동일. 각각 가공 가능.
+console.log(b5);                    // 1,2,3
+
+const data = {phone:"2222"};
+const a6 = {id:1, name:"홍길동", phone:"1111", age:17, gender:"남"};
+//const b6 = {...a6, name:"김철수"};     // a6값은 그대로 , b6이름만 덮어서 변경함.
+const b6 = {...a6, ...data};     // a6값은 그대로, b6이름만 변경함.
+console.log(b6);
+
+const users = [
+    {id:1, name:"구태모", phone:"2222"},
+    {id:2, name:"이대엽", phone:"3333"},
+    {id:3, name:"오승훈", phone:"4444"}
+];
+
+const updateUserDto = {
+    id:2, name:"홍길동"
+};
+
+//users[1].name = updateUserDto.name; // 기존데이타 변경됨.
+
+// 2번째 값만 변경
+// const newUsers = users.map((user) = user) // const newUser = {...users}
+const newUsers = users.map( (user) =>
+    user.id === updateUserDto.id ? {...user, ...updateUserDto} : user
+);
+console.log(newUsers);
+
+// *** 정규연산자 : 회전초밥집에서 마지막으로 초밥을 받을 수 있는거.
+// *** map() : 모든 회전초밥에 침 묻힐 수 있는거, 가공가능.
+
+
+</script>
+</body>
+</html>
