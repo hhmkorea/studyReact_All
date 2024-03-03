@@ -5,7 +5,7 @@ export const decrease = () => ({type: "DECREMENT"});
 // 상태, state
 
 const initstate = {
-  number: 0,
+  number: 1,
 }
 
 // 액션의 결과를 걸러내는 역할, reducer

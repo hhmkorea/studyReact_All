@@ -5,8 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter as Router} from "react-router-dom";
 import reducer from './store';
-import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 
 const store = createStore(reducer);
 
@@ -15,7 +15,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 // document.querySelector()와 비슷하나, 이건 css 선택자를 찾음.
 root.render(
   <React.StrictMode>
-    <Provider store={store()}>
+    <Provider store={store}>
       <Router>
           <App />
       </Router>
