@@ -1,0 +1,14 @@
+{
+  "name": "shopping_app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "scripts": {
+    "run:client": "cd client && yarn install && yarn start",
+    "run:server": "cd server && yarn install && yarn start",
+    "run:both": "yarn install && concurrently \"yarn run:server\" \"yarn:run:client\""
+  }
+}
